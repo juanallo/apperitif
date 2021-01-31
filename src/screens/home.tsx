@@ -1,8 +1,9 @@
 import * as React from 'react'
-import {SafeAreaView} from 'react-native'
-import {Button, Divider, Layout, TopNavigation} from '@ui-kitten/components'
+import { StyleSheet, SafeAreaView, View } from 'react-native'
+import { Button, Layout } from '@ui-kitten/components'
+import { Hero } from '../components/Hero/Hero'
 
-export const HomeScreen = ({navigation}: any) => {
+export const HomeScreen = ({ navigation }: any) => {
   const navigateDetails = () => {
     navigation.navigate('Details')
   }
@@ -12,13 +13,36 @@ export const HomeScreen = ({navigation}: any) => {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <TopNavigation title="MyApp" alignment="center" />
-      <Divider />
-      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Button onPress={navigateSearch}>Open Search</Button>
-        <Button onPress={navigateDetails}>Open Detail</Button>
+    <SafeAreaView style={styles.view}>
+      <Layout style={styles.layout}>
+        <View style={styles.hero}>
+          <Hero />
+        </View>
+        <View style={styles.actions}>
+          <Button onPress={navigateSearch}>Open Search</Button>
+          <Button onPress={navigateDetails}>Open Details</Button>
+        </View>
       </Layout>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  hero: {
+    height: '50%',
+  },
+  view: { flex: 1 },
+  layout: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: '20%',
+    paddingBottom: '20%',
+    boxSizing: 'content-box',
+  },
+  actions: {
+    height: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  }
+})

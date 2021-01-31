@@ -1,5 +1,5 @@
 import React from 'react'
-import {SafeAreaView} from 'react-native'
+import { SafeAreaView } from 'react-native'
 import {
   Divider,
   Icon,
@@ -11,7 +11,7 @@ import {
 
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />
 
-export const DetailsScreen = ({navigation}: any) => {
+export const DetailsScreen = ({ navigation }: any) => {
   const navigateBack = () => {
     navigation.goBack()
   }
@@ -21,14 +21,15 @@ export const DetailsScreen = ({navigation}: any) => {
   )
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <TopNavigation
         title="MyApp"
         alignment="center"
         accessoryLeft={BackAction}
       />
       <Divider />
-      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Layout
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text category="h1">DETAILS</Text>
       </Layout>
     </SafeAreaView>

@@ -1,11 +1,11 @@
 import React from 'react'
-import {ApplicationProvider, IconRegistry} from '@ui-kitten/components'
-import {EvaIconsPack} from '@ui-kitten/eva-icons'
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
+import { EvaIconsPack } from '@ui-kitten/eva-icons'
 import * as eva from '@eva-design/eva'
 import customTheme from './assets/themes/theme'
-import {AppNavigator} from './screens/navigation'
+import { AppNavigator } from './screens/navigation'
 
-const theme = {...eva.light, ...customTheme}
+const theme = { ...eva.light, ...customTheme }
 
 export default (): React.ReactFragment => (
   <>
