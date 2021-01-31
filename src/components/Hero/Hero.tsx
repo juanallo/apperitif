@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <View style={styles.container}>
       <Text category="h1">Apperitif</Text>
-      <Logo height={200} width={200} />
+      <Logo height={170} width={170} />
     </View>
   )
 }
