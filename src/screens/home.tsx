@@ -1,8 +1,44 @@
 import * as React from 'react'
-import { StyleSheet, SafeAreaView, View, ScrollView } from 'react-native'
-import { Button, Layout } from '@ui-kitten/components'
+import { StyleSheet, SafeAreaView, View } from 'react-native'
+import { Layout } from '@ui-kitten/components'
 import { Hero } from '../components/Hero/Hero'
 import { Search } from '../components/Search/Search'
+import { DrinkList } from '../components/DrinkList/DrinkList'
+
+const DRINKS = [
+  {
+    title: 'Margarita',
+    description: 'Tequila - Lime',
+    resolveImage: () => ({
+      uri:
+        'https://www.thecocktaildb.com/images/media/drink/rxurpr1441554292.jpg',
+    }),
+  },
+  {
+    title: 'Snake Bite',
+    description: 'Lager - Cider',
+    resolveImage: () => ({
+      uri:
+        'https://www.thecocktaildb.com/images/media/drink/xuwpyu1441248734.jpg',
+    }),
+  },
+  {
+    title: 'Mulled Wine',
+    description: 'Brandy - wine',
+    resolveImage: () => ({
+      uri:
+        'https://www.thecocktaildb.com//images//media//drink//iuwi6h1504735724.jpg',
+    }),
+  },
+  {
+    title: '501 Blue',
+    description: 'Blue Curacao',
+    resolveImage: () => ({
+      uri:
+        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
+    }),
+  },
+]
 
 export const HomeScreen = ({ navigation }: any) => {
   const navigateDetails = () => {
@@ -16,27 +52,21 @@ export const HomeScreen = ({ navigation }: any) => {
   return (
     <SafeAreaView style={styles.view}>
       <Layout style={styles.layout}>
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.scroll}
-          contentInsetAdjustmentBehavior="automatic">
-          <View style={styles.hero}>
-            <Hero />
-          </View>
-          <View style={styles.actions}>
-            <Search navigateToSearch={navigateSearch} />
-            <Button onPress={navigateDetails}>Open Details</Button>
-          </View>
-        </ScrollView>
+        <View style={styles.hero}>
+          <Hero />
+        </View>
+        <View style={styles.actions}>
+          <Search navigateToSearch={navigateSearch} />
+        </View>
+        <View style={styles.drinks}>
+          <DrinkList open={navigateDetails} drinks={DRINKS} />
+        </View>
       </Layout>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  hero: {
-    minHeight: 150,
-  },
   view: { flex: 1 },
   scroll: { display: 'flex', height: '100%', width: '100%' },
   layout: {
@@ -44,15 +74,23 @@ const styles = StyleSheet.create({
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: '20%',
-    paddingBottom: '20%',
+  },
+  hero: {
+    paddingTop: 40,
+    flex: 1,
   },
   actions: {
     paddingLeft: '5%',
     paddingRight: '5%',
-    height: '50%',
+    height: 70,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  drinks: {
+    display: 'flex',
+    width: '100%',
+    flex: 2,
+    paddingTop: 10,
   },
 })

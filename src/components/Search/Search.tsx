@@ -35,7 +35,7 @@ export const Search = ({ navigateToSearch }: props) => {
       size="large"
       ref={ref}
       textStyle={{ minHeight: 42 }}
-      placeholder="I am feeling lucky"
+      placeholder="Feeling thirsty?"
       accessoryRight={renderIcon}
       onEndEditing={search}
     />
