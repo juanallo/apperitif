@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   hero: {
     paddingTop: 40,
-    flex: 1,
+    height: 270,
   },
   actions: {
     paddingLeft: '5%',
