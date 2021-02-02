@@ -45,8 +45,9 @@ export const HomeScreen = ({ navigation }: any) => {
     navigation.navigate('Details')
   }
 
-  const navigateSearch = () => {
-    navigation.navigate('Search')
+  const navigateSearch = (searchInput: String, clear: Function) => {
+    navigation.navigate('Search', { input: searchInput })
+    clear()
   }
 
   return (
@@ -56,7 +57,7 @@ export const HomeScreen = ({ navigation }: any) => {
           <Hero />
         </View>
         <View style={styles.actions}>
-          <Search navigateToSearch={navigateSearch} />
+          <Search search={navigateSearch} />
         </View>
         <View style={styles.drinks}>
           <OurPicks open={navigateDetails} drinks={DRINKS} />

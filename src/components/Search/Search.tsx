@@ -7,7 +7,8 @@ import {
 } from 'react-native'
 
 interface props {
-  navigateToSearch: Function
+  search: (searchInput: String, clear: Function) => void
+  defaultValue?: string
 }
 
 const renderIcon = (props: any) => (
@@ -16,17 +17,19 @@ const renderIcon = (props: any) => (
   </TouchableWithoutFeedback>
 )
 
-export const Search = ({ navigateToSearch }: props) => {
+export const Search = ({ search, defaultValue = '' }: props) => {
   const ref = React.createRef<Input>()
-  const search = ({
+  const doSearch = ({
     nativeEvent,
   }: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
     const NAVIGATION_DURATION = 400
     if (nativeEvent.text) {
-      navigateToSearch(nativeEvent.text)
-      setTimeout(() => {
-        ref.current?.clear()
-      }, NAVIGATION_DURATION)
+      const clear = () =>
+        setTimeout(() => {
+          ref.current?.clear()
+        }, NAVIGATION_DURATION)
+
+      search(nativeEvent.text, clear)
     }
   }
 
@@ -36,8 +39,9 @@ export const Search = ({ navigateToSearch }: props) => {
       ref={ref}
       textStyle={{ minHeight: 42 }}
       placeholder="Feeling thirsty?"
+      defaultValue={defaultValue}
       accessoryRight={renderIcon}
-      onEndEditing={search}
+      onEndEditing={doSearch}
     />
   )
 }
