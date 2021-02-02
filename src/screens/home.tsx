@@ -3,7 +3,7 @@ import { StyleSheet, SafeAreaView, View } from 'react-native'
 import { Layout } from '@ui-kitten/components'
 import { Hero } from '../components/Hero/Hero'
 import { Search } from '../components/Search/Search'
-import { DrinkList } from '../components/DrinkList/DrinkList'
+import { OurPicks } from '../components/OurPicks/OurPicks'
 
 const DRINKS = [
   {
@@ -59,7 +59,7 @@ export const HomeScreen = ({ navigation }: any) => {
           <Search navigateToSearch={navigateSearch} />
         </View>
         <View style={styles.drinks}>
-          <DrinkList open={navigateDetails} drinks={DRINKS} />
+          <OurPicks open={navigateDetails} drinks={DRINKS} />
         </View>
       </Layout>
     </SafeAreaView>
