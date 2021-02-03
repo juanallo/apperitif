@@ -4,45 +4,11 @@ import { Layout } from '@ui-kitten/components'
 import { Hero } from '../components/Hero/Hero'
 import { Search } from '../components/Search/Search'
 import { OurPicks } from '../components/OurPicks/OurPicks'
-
-const DRINKS = [
-  {
-    title: 'Margarita',
-    description: 'Tequila - Lime',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/rxurpr1441554292.jpg',
-    }),
-  },
-  {
-    title: 'Snake Bite',
-    description: 'Lager - Cider',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/xuwpyu1441248734.jpg',
-    }),
-  },
-  {
-    title: 'Mulled Wine',
-    description: 'Brandy - wine',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com//images//media//drink//iuwi6h1504735724.jpg',
-    }),
-  },
-  {
-    title: '501 Blue',
-    description: 'Blue Curacao',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
-    }),
-  },
-]
+import { DRINKS, Drink } from '../api/data'
 
 export const HomeScreen = ({ navigation }: any) => {
-  const navigateDetails = () => {
-    navigation.navigate('Details')
+  const navigateDetails = (data: Drink) => {
+    navigation.navigate('Details', data)
   }
 
   const navigateSearch = (searchInput: String, clear: Function) => {

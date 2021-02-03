@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import {
   Icon,
   Layout,
@@ -8,81 +8,7 @@ import {
 } from '@ui-kitten/components'
 import { DrinkList } from '../components/DrinkList/DrinkList'
 import { Search } from '../components/Search/Search'
-
-const DRINKS = [
-  {
-    title: 'Margarita',
-    description: 'Tequila - Lime',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/rxurpr1441554292.jpg',
-    }),
-  },
-  {
-    title: 'Snake Bite',
-    description: 'Lager - Cider',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/xuwpyu1441248734.jpg',
-    }),
-  },
-  {
-    title: 'Mulled Wine',
-    description: 'Brandy - wine',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com//images//media//drink//iuwi6h1504735724.jpg',
-    }),
-  },
-  {
-    title: '501 Blue',
-    description: 'Blue Curacao',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
-    }),
-  },
-  {
-    title: '501 Blue',
-    description: 'Blue Curacao',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
-    }),
-  },
-  {
-    title: '501 Blue',
-    description: 'Blue Curacao',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
-    }),
-  },
-  {
-    title: '501 Blue',
-    description: 'Blue Curacao',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
-    }),
-  },
-  {
-    title: '501 Blue',
-    description: 'Blue Curacao',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
-    }),
-  },
-  {
-    title: '501 Blue',
-    description: 'Blue Curacao',
-    resolveImage: () => ({
-      uri:
-        'https://www.thecocktaildb.com/images/media/drink/ywxwqs1461867097.jpg',
-    }),
-  },
-]
+import { DRINKS, Drink } from '../api/data'
 
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />
 
@@ -93,8 +19,8 @@ export const SearchScreen = ({ route, navigation }: any) => {
     navigation.goBack()
   }
 
-  const navigateDetails = () => {
-    navigation.navigate('Details')
+  const navigateDetails = (data: Drink) => {
+    navigation.navigate('Details', data)
   }
 
   const BackAction = () => (
@@ -102,8 +28,8 @@ export const SearchScreen = ({ route, navigation }: any) => {
   )
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Layout level="2" style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeArea}>
+      <Layout level="2" style={styles.layout}>
         <TopNavigation
           title="Search Results"
           alignment="center"
@@ -115,3 +41,8 @@ export const SearchScreen = ({ route, navigation }: any) => {
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  safeArea: { flex: 1 },
+  layout: { flex: 1 },
+})

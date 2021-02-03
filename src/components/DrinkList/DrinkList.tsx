@@ -22,7 +22,7 @@ export const DrinkList = ({ open, drinks }: props) => {
       numColumns={2}
       renderItem={(drink: ListRenderItemInfo<Drink>) => (
         <View style={styles.card}>
-          <DrinkCard open={open} {...drink.item} />
+          <DrinkCard onClick={open} drink={drink.item} />
         </View>
       )}
     />
