@@ -8,7 +8,8 @@ import {
 } from '@ui-kitten/components'
 import { DrinkList } from '../components/DrinkList/DrinkList'
 import { Search } from '../components/Search/Search'
-import { DRINKS, Drink } from '../api/data'
+import { Drink } from '../api/Adapter'
+import { DRINKS } from '../api/data'
 
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />
 

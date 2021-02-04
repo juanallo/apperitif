@@ -6,7 +6,9 @@ import { DrinkCard } from '../DrinkCard/DrinkCard'
 interface Drink {
   title: string
   description: string
-  resolveImage: Function
+  image: {
+    uri: string
+  }
 }
 
 interface props {

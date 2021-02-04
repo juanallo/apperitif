@@ -4,7 +4,9 @@ import { Card, Text } from '@ui-kitten/components'
 import { ColorMatrix, polaroid } from 'react-native-color-matrix-image-filters'
 
 export interface Drink {
-  resolveImage: Function
+  image: {
+    uri: string
+  }
   title: string
   description: string
 }
@@ -13,17 +15,20 @@ export interface DrinkProps {
   onClick: Function
 }
 
-const header = (resolveImage: Function): React.ReactElement => (
+const header = (image: Drink['image']): React.ReactElement => (
   <ColorMatrix matrix={polaroid()}>
-    <ImageBackground style={styles.itemHeader} source={resolveImage()} />
+    <ImageBackground style={styles.itemHeader} source={image} />
   </ColorMatrix>
 )
 
 export const DrinkCard = ({ drink, onClick }: DrinkProps) => {
-  const { title, description, resolveImage } = drink
+  const { title, description, image } = drink
 
   return (
-    <Card header={() => header(resolveImage)} onPress={() => onClick(drink)}>
+    <Card
+      header={() => header(image)}
+      onPress={() => onClick(drink)}
+      style={styles.card}>
       <Text category="s1">{title}</Text>
       <Text appearance="hint" category="c1">
         {description}
@@ -35,5 +40,8 @@ export const DrinkCard = ({ drink, onClick }: DrinkProps) => {
 const styles = StyleSheet.create({
   itemHeader: {
     height: 160,
+  },
+  card: {
+    flex: 1,
   },
 })

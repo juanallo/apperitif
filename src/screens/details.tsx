@@ -25,13 +25,7 @@ export const DetailsScreen = ({ route, navigation }: any) => {
     navigation.goBack()
   }
 
-  const {
-    title,
-    description,
-    resolveImage,
-    ingredients,
-    instructions,
-  } = route.params
+  const { title, description, image, ingredients, instructions } = route.params
 
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
@@ -39,10 +33,10 @@ export const DetailsScreen = ({ route, navigation }: any) => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <TopNavigation style={styles.top} accessoryLeft={BackAction} />
       <ScrollView>
+        <TopNavigation style={styles.top} accessoryLeft={BackAction} />
         <ColorMatrix matrix={polaroid()}>
-          <ImageBackground source={resolveImage()} style={styles.image} />
+          <ImageBackground source={image} style={styles.image} />
         </ColorMatrix>
 
         <Layout style={styles.content}>
@@ -72,7 +66,11 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     zIndex: 2,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(255,255,255,0.6)',
+    width: 55,
+    borderRadius: 400,
+    marginLeft: 10,
+    marginTop: 10,
   },
   image: {
     width: Dimensions.get('window').width,
@@ -111,7 +109,7 @@ const styles = StyleSheet.create({
       { translateX: -170 },
     ],
     textTransform: 'uppercase',
-    color: 'rgba(0,0,0,0.05)',
+    color: 'rgba(0,0,0,0.0)',
     textDecorationStyle: 'double',
     textDecorationColor: 'black',
   },

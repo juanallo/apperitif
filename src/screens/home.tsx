@@ -4,7 +4,8 @@ import { Layout } from '@ui-kitten/components'
 import { Hero } from '../components/Hero/Hero'
 import { Search } from '../components/Search/Search'
 import { OurPicks } from '../components/OurPicks/OurPicks'
-import { DRINKS, Drink } from '../api/data'
+import { Drink } from '../api/Adapter'
+import { OurPicksContainer } from '../containers/OurPicksContainer'
 
 export const HomeScreen = ({ navigation }: any) => {
   const navigateDetails = (data: Drink) => {
@@ -26,7 +27,9 @@ export const HomeScreen = ({ navigation }: any) => {
           <Search search={navigateSearch} />
         </View>
         <View style={styles.drinks}>
-          <OurPicks open={navigateDetails} drinks={DRINKS} />
+          <OurPicksContainer>
+            {(drinks) => <OurPicks open={navigateDetails} drinks={drinks} />}
+          </OurPicksContainer>
         </View>
       </Layout>
     </SafeAreaView>
