@@ -3,6 +3,7 @@ import { Loading } from '../components/Loading/Loading'
 import { Drink } from '../api/Adapter'
 import { fetchSearch } from '../api/Search'
 import { Error } from '../components/Error/Error'
+import { EmptySearch } from '../components/EmptySearch/EmptySearch'
 
 export interface ChildrenData {
   error?: string
@@ -51,5 +52,9 @@ export const SearchContainer = ({ children, search }: SearchContainerProps) => {
     )
   }
 
-  return children(data.data || [])
+  if (!data.data?.length) {
+    return <EmptySearch />
+  }
+
+  return children(data.data)
 }
