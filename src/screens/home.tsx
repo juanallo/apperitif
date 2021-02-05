@@ -12,7 +12,7 @@ export const HomeScreen = ({ navigation }: any) => {
     navigation.navigate('Details', data)
   }
 
-  const navigateSearch = (searchInput: String, clear: Function) => {
+  const navigateSearch = (searchInput: string, clear: Function) => {
     navigation.navigate('Search', { input: searchInput })
     clear()
   }

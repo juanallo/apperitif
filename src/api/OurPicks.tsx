@@ -1,4 +1,4 @@
-import { adapt } from './Adapter'
+import { adapt, APIDrink, Drink } from './Adapter'
 const fetchRandom = () => {
   return fetch(
     'http://www.thecocktaildb.com/api/json/v1/1/random.php',
@@ -7,7 +7,7 @@ const fetchRandom = () => {
 /*
  Ugly, ugly, ugly and ugly but there is no random API that returns multiple drinks.
 */
-export const fetchOurPicks = () => {
+export const fetchOurPicks = (): Promise<Array<Drink>> => {
   return Promise.all([
     fetchRandom(),
     fetchRandom(),
@@ -15,7 +15,7 @@ export const fetchOurPicks = () => {
     fetchRandom(),
   ]).then((result) => {
     return result.reduce((accumulator, value) => {
-      return accumulator.concat(value.drinks.map((d: any) => adapt(d)))
+      return accumulator.concat(value.drinks.map((d: APIDrink) => adapt(d)))
     }, [])
   })
 }

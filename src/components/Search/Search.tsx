@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 
 interface props {
-  search: (searchInput: String, clear: Function) => void
+  search: (searchInput: string, clear: Function) => void
   defaultValue?: string
 }
 

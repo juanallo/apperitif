@@ -15,7 +15,7 @@ export interface Ingredient {
   name: string
 }
 
-interface APIDrink {
+export interface APIDrink {
   idDrink: string
   strDrink: string
   strCategory?: string

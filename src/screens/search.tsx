@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import {
   Icon,
@@ -9,12 +9,12 @@ import {
 import { DrinkList } from '../components/DrinkList/DrinkList'
 import { Search } from '../components/Search/Search'
 import { Drink } from '../api/Adapter'
-import { DRINKS } from '../api/data'
+import { SearchContainer } from '../containers/SearchContainer'
 
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />
 
 export const SearchScreen = ({ route, navigation }: any) => {
-  const { input } = route.params
+  const [input, setInput] = useState(route.params.input)
 
   const navigateBack = () => {
     navigation.goBack()
@@ -28,6 +28,10 @@ export const SearchScreen = ({ route, navigation }: any) => {
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   )
 
+  const search = (input: string) => {
+    setInput(input)
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <Layout level="2" style={styles.layout}>
@@ -36,8 +40,10 @@ export const SearchScreen = ({ route, navigation }: any) => {
           alignment="center"
           accessoryLeft={BackAction}
         />
-        <Search search={() => {}} defaultValue={input} />
-        <DrinkList drinks={DRINKS} open={navigateDetails} />
+        <Search search={search} defaultValue={input} />
+        <SearchContainer search={input}>
+          {(drinks) => <DrinkList drinks={drinks} open={navigateDetails} />}
+        </SearchContainer>
       </Layout>
     </SafeAreaView>
   )
