@@ -6,6 +6,7 @@ import { Search } from '../components/Search/Search'
 import { OurPicks } from '../components/OurPicks/OurPicks'
 import { Drink } from '../api/Adapter'
 import { OurPicksContainer } from '../containers/OurPicksContainer'
+import { Offline } from '../components/Offline/Offline'
 
 export const HomeScreen = ({ navigation }: any) => {
   const navigateDetails = (data: Drink) => {
@@ -20,6 +21,7 @@ export const HomeScreen = ({ navigation }: any) => {
   return (
     <SafeAreaView style={styles.view}>
       <Layout style={styles.layout}>
+        <Offline />
         <View style={styles.hero}>
           <Hero />
         </View>

@@ -10,6 +10,7 @@ import { DrinkList } from '../components/DrinkList/DrinkList'
 import { Search } from '../components/Search/Search'
 import { Drink } from '../api/Adapter'
 import { SearchContainer } from '../containers/SearchContainer'
+import { Offline } from '../components/Offline/Offline'
 
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />
 
@@ -40,6 +41,7 @@ export const SearchScreen = ({ route, navigation }: any) => {
           alignment="center"
           accessoryLeft={BackAction}
         />
+        <Offline message="You are offline, showing cached results" />
         <Search search={search} defaultValue={input} />
         <SearchContainer search={input}>
           {(drinks) => <DrinkList drinks={drinks} open={navigateDetails} />}

@@ -7,9 +7,9 @@ export interface ErrorProps {
 
 export const Error = ({ retry }: ErrorProps) => {
   return (
-    <Layout style={styles.loading}>
+    <Layout style={styles.error}>
       <Icon name="alert-triangle-outline" style={styles.icon} fill="#fa7373" />
-      <Text appearance="hint" category="h5" style={styles.loadingText}>
+      <Text appearance="hint" category="h5" style={styles.errorText}>
         Huh, where are those drinks again?
       </Text>
       <Button onPress={() => retry()} style={styles.retry}>
@@ -20,12 +20,12 @@ export const Error = ({ retry }: ErrorProps) => {
 }
 
 const styles = StyleSheet.create({
-  loading: {
+  error: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  loadingText: {
+  errorText: {
     lineHeight: 30,
     textAlign: 'center',
     maxWidth: '50%',
