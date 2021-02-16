@@ -7,6 +7,7 @@ import { OurPicks } from '../components/OurPicks/OurPicks'
 import { Drink } from '../api/Adapter'
 import { OurPicksContainer } from '../containers/OurPicksContainer'
 import { Offline } from '../components/Offline/Offline'
+import { NetworkConsumer } from 'react-native-offline'
 
 export const HomeScreen = ({ navigation }: any) => {
   const navigateDetails = (data: Drink) => {
@@ -29,9 +30,17 @@ export const HomeScreen = ({ navigation }: any) => {
           <Search search={navigateSearch} />
         </View>
         <View style={styles.drinks}>
-          <OurPicksContainer>
-            {(drinks) => <OurPicks open={navigateDetails} drinks={drinks} />}
-          </OurPicksContainer>
+          <NetworkConsumer>
+            {({ isConnected }) => {
+              return (
+                <OurPicksContainer isConnected={isConnected}>
+                  {(drinks) => (
+                    <OurPicks open={navigateDetails} drinks={drinks} />
+                  )}
+                </OurPicksContainer>
+              )
+            }}
+          </NetworkConsumer>
         </View>
       </Layout>
     </SafeAreaView>
