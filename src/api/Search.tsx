@@ -1,27 +1,10 @@
 import { adapt, APIDrink, Drink } from './Adapter'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { save, fetchFromCache } from './cache/Cache'
 
-//TODO think about how to clean the cache.
-const save = (key: string, drinks: Array<Drink>) => {
-  if (drinks.length) {
-    setTimeout(async () => {
-      try {
-        AsyncStorage.setItem(
-          key,
-          JSON.stringify({
-            timestamp: Date.now(),
-            data: drinks,
-          }),
-        )
-      } catch (e) {
-        // saving error
-      }
-    })
-  }
-}
+const getCacheKey = (search: string) => `@search/${search.toLocaleLowerCase()}`
 
 export const fetchSearch = async (search: string): Promise<Array<Drink>> => {
-  const cachedDrinks = await AsyncStorage.getItem(search)
+  const cachedDrinks = await fetchFromCache(getCacheKey(search))
 
   if (cachedDrinks) {
     return JSON.parse(cachedDrinks).data
@@ -34,7 +17,7 @@ export const fetchSearch = async (search: string): Promise<Array<Drink>> => {
     .then((result) => result.drinks || [])
     .then((result) => result.map((d: APIDrink) => adapt(d)))
     .then((drinks) => {
-      save(search, drinks)
+      save(getCacheKey(search), drinks)
       return drinks
     })
 }
